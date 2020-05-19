@@ -1,4 +1,7 @@
 # 1-3. 장고의 모델
+해당강좌 : https://www.udemy.com/course/djangogirls-with-askdjango/learn/lecture/9431156#overview  
+해당 튜토리얼 : https://tutorial.djangogirls.org/ko/django_models/
+
 
 이제는 블로그의 포스트를 저장하는 부분을 만들텐데,  
 그전에 알아둘 내용은 객체(Object)다. (+ 객체지향 프로그래밍, OOP)  
