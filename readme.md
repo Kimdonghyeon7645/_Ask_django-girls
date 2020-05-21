@@ -1,5 +1,8 @@
 # django girls(장고걸스) study with 'Ask company'
-### https://www.askcompany.kr/r/djangogirls/
+
+- 중심이 되는 강좌 : [장고걸스 튜토리얼 따라하기(기본 튜토리얼)](https://www.askcompany.kr/r/djangogirls/)  
+중심이 되는 튜토리얼 문서 : [장고걸스 튜토리얼 (한글번역)](https://tutorial.djangogirls.org/ko/)
+
 
 사실상 장고(django)를 가지고 여러 프로젝트를 해보았다. (물론 2020년이 들어서야 늦게 시작했긴 했지만...)
 
