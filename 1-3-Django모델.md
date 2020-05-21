@@ -1,5 +1,5 @@
 # 1-3. 장고의 모델
-해당강좌 : https://www.udemy.com/course/djangogirls-with-askdjango/learn/lecture/9431156#overview  
+- 해당강좌 : https://www.udemy.com/course/djangogirls-with-askdjango/learn/lecture/9431156#overview  
 해당 튜토리얼 : https://tutorial.djangogirls.org/ko/django_models/
 
 

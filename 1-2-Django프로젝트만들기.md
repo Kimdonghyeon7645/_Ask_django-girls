@@ -1,5 +1,5 @@
 # 1-2. 장고 프로젝트 만들기
-해당강좌 : https://www.udemy.com/course/djangogirls-with-askdjango/learn/lecture/9431152#overview  
+- 해당강좌 : https://www.udemy.com/course/djangogirls-with-askdjango/learn/lecture/9431152#overview  
 해당 튜토리얼 : https://tutorial.djangogirls.org/ko/django_start_project/
 
 이제는, 장고의 기본 골격을 만들어주는 스크립트를 실행할 것이다.   

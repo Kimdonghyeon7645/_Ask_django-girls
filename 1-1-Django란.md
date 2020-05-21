@@ -1,5 +1,5 @@
 # 1-1. 장고란
-해당강좌 : https://www.udemy.com/course/djangogirls-with-askdjango/learn/lecture/9431148#overview  
+- 해당강좌 : https://www.udemy.com/course/djangogirls-with-askdjango/learn/lecture/9431148#overview  
 해당 튜토리얼 : https://tutorial.djangogirls.org/ko/django/
 
 **Django(장고, 쟁고)** 란 파이썬으로 만들어진 무료 오픈소스의 웹 어플리케이션 프레임워크다.
