@@ -11,9 +11,10 @@
 
 ## 장고 URL 작동법
 
-url에 대해서는, (프로젝트)/urls.py 파일을 열어서 알아보자.
+url에 대해서는, (프로젝트명)/urls.py 파일을 열어서 알아보자.
 
 ```python
+# (프로젝트명)/urls.py
 from django.contrib import admin
 from django.urls import path
 
@@ -26,6 +27,7 @@ urlpatterns = [
 여기서 urlpatterns 리스트는 리스트 안에 있는 path의 url 패턴(첫번째 인자)들에 따라서, 패턴이 일치하면 실행할 함수(두번째인자)를 매칭 시켜준다. 
 
 ```python
+# (프로젝트명)/urls.py
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
