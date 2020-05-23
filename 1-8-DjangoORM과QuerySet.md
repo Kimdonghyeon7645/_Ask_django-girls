@@ -119,4 +119,5 @@ Post.objects.filter(author=me)
 ```python
 Post.objects.filter(title__contains='title')
 ```
-title__contains 는 독특하다.
+title__contains 같이 해서 필드에 연산자를 넣을 수 있다.  
+사실 title이란 원래 Post의 필드에 contains란 필터를 추가한 것인데, 이것을 구분할 때는 장고 ORM은 __을 붙여준다. (_가 반드시 2개여야 된다.) 
