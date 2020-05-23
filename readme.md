@@ -39,3 +39,6 @@
 - [1-3. Django모델](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-3-Django모델.md)
 - [1-4. Django관리자](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-4-Django관리자.md)
 - [1-5. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-5-DjangoURLs.md)
+- [1-6. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-6-Django뷰(view).md)
+- [1-7. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-7-HTML시작하기.md)
+- [1-8. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-8-DjangoORM과QuerySet.md)
