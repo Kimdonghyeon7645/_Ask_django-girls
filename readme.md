@@ -34,11 +34,12 @@
 
 ## 목차
 
-- [1-1. Django란](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-1-Django란.md)
-- [1-2. Django프로젝트만들기](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-2-Django프로젝트만들기.md)
-- [1-3. Django모델](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-3-Django모델.md)
-- [1-4. Django관리자](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-4-Django관리자.md)
-- [1-5. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-5-DjangoURLs.md)
-- [1-6. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-6-Django뷰(view).md)
-- [1-7. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-7-HTML시작하기.md)
-- [1-8. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-8-DjangoORM과QuerySet.md)
+- [1-1. Django란](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-01-Django란.md)
+- [1-2. Django프로젝트만들기](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-02-Django프로젝트만들기.md)
+- [1-3. Django모델](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-03-Django모델.md)
+- [1-4. Django관리자](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-04-Django관리자.md)
+- [1-5. DjangoURLs](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-05-DjangoURLs.md)
+- [1-6. Django뷰(view)](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-06-Django뷰(view).md)
+- [1-7. HTML시작하기](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-07-HTML시작하기.md)
+- [1-8. DjangoORM과QuerySet](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-08-DjangoORM과QuerySet.md)
+- [1-9. 템플릿동적데이터,쿼리셋](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-08-템플릿동적데이터,쿼리셋.md)
