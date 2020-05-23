@@ -119,5 +119,100 @@ Post.objects.filter(author=me)
 ```python
 Post.objects.filter(title__contains='title')
 ```
-title__contains 같이 해서 필드에 연산자를 넣을 수 있다.  
-사실 title이란 원래 Post의 필드에 contains란 필터를 추가한 것인데, 이것을 구분할 때는 장고 ORM은 __을 붙여준다. (_가 반드시 2개여야 된다.) 
+```title__contains``` 같이 해서 필드에 연산자를 넣을 수 있다.  
+
+    사실 'title__contains'는
+    Post의 필드이름인 'title'에, 'contains'란 필터를 추가한 것이다. 
+    
+    첫 예시처럼(author=me)
+    filter에 (필드)='값'으로 인자값을 간단히 넘겨줄 수 있지만,
+    여기에 필터나 연산자를 추가해서 조건을 넣어주고 싶다면, (필드__(필터or연산자))='값'같이 해줘야 된다.
+    이렇게 필드와 필터or연산자 둘을 구분할 때 장고 ORM은 __을 붙여준다. (_가 반드시 2개여야 된다.) 
+
+이 ```title__contains```의 뜻은, title 필드에서, (contains=)~를 포함하고 있는 이라는 뜻이며,  
+```title__contains='title'``` 은, title 필드의 값에서 'title'이란 텍스트를 포함하고 있는 값들만 가져오게 된다.
+
+참고로 contains는 대소문자를 구분하는데,(물론 DB에 따라서 contains를 써도 DB가 대소문자를 구별안하면 걍 구별안함) 이 대신에 icontains를 사용하면 대소문자를 구분하지 않게 된다.
+
+## 현재 시간 사용하기
+
+```python
+from django.utils import timezone
+```
+참고로 장고에서는 UTC 기준으로 시간을 제공한다.
+이것은 유틸스(utils)의 timezone을 임포트, 가져와서 사용할 수 있는데, 
+
+```timezone.now()```라고 하면 현재 시간을 가져올 수 있다.
+
+그리고 이것을 이용해서, 필터에 현재 시간을 사용할 수 있다. Post 모델을 만들때, published_date 필드에 객체를 만든 시간을 넣어주도록 짰었기 때문이다.
+
+그리고 이제 published_date에 담았던 시간을 기준으로 필터링도 해보자.
+```python
+Post.objects.filter(published_date__lte=timezone.now())
+```
+이와 같이 해줄 수 있는데, ```published_date__lte```는 마찬가지로 published_date라는 필드에 lte라는 연산자를 추가한 것이다.  
+여기서 'lte'는, 'less than equal'의 약자로, 작거나 같다(<=)라는 연산자를 의미한다.  
+(반대로 'gte'는 'greater than equal'로, 크거나 같다(>=)란 연산자다.)
+
+그래서 ```published_date__lte=timezone.now()```은 ```published_date <= timezone.now()```와 같으며, ((published필드에 있는 시간값) <= 현재 시간값)이란 소리다.  
+그래서 이 필터는 현재시간보다 이른, 그니까 과거의 시간의 정보를 가져올 것이다.
+
+## 장고모듈, 객체의 메서드 호출하기
+
+그래서 원래라면 현재시간보다 이른 시간값인 경우만 가져오게 될텐데, 사실은 그렇지 않다. 이걸 출력해보면 빈 상태가 출력된다.
+
+왜냐면 published_date 가 비여있기 때문이다..  하지만, 지난번의 Post 모델에서 대충 넘어간 코드중에, 
+```python
+# models.py
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+```
+와 같이, Post 모델안에 메서드 publish()로 이 메서드를 호출하면, 현재 시간(timezone.now())을 published_date 필드에 넣고, save()까지 해줘서 필드에 적용까지 해주었다.  
+그러면 이 메서드를 호출해주면 현재 비여있는 published_date 필드에 시간값을 넣어줄 수 있을 것이다.
+
+그러면 실제로 객체에 메서드를 호출해주도록 하자.
+```python
+post = Post.objects.get(title="Sample title")
+```
+라고 하면, 이제 Post 모델중에서 title이 'Sample title'인 객체(DB로 말하면 행)을 가져와서 post 변수에 저장해 줄 수 있을 것이다. 그러면 post엔 해당 객체가 담기겠고, 이대로
+```python
+post.publish()
+```
+와 같이 객체의 메서드를 실행해주면, published_date 필드에 시간값이 들어가게 된다. 잘 들어갔는지 궁금하면,
+```python
+post.published_date
+```
+로 published_date필드도 장고 모델에선 객체로 구현했으니, 필드도 객체의 속성으로 접근해서 출력해줄 수 있다.  
+그렇게 published_date필드를 출력해주면 정상적으로 객체에 시간값이 저장된 걸 확인할 수 있다.
+
+그리고 마지막으로,
+```python
+Post.objects.filter(published_date__lte=timezone.now())
+```
+다시 위 코드를 실행한다면, post에서 published_date로 시간값을 넣어줬었으니까, 그 시간값을 넣어준 객체만 출력이 되는 것을 볼 수 있다.
+
+## 객체 정렬하기
+
+쿼리셋(=(객체명).objects)에서는 또한 .order_by() 함수를 사용해서 객체목록을 정렬할 수도 있다.
+
+```python
+Post.objects.order_by('created_date')
+```
+이렇게 ```.order_by('(필드명)')```과 같이 해당 필드명을 기준으로 객체 목록을 오름차순으로 정렬할 수 있다.
+
+반대로 내림차순으로 정렬하고 싶다면, 필드명 앞에 -를 붙여주면 된다. 아래와 같이 말이다.
+```python
+Post.objects.order_by('-created_date')
+```
+
+## 쿼리셋 체이닝(연결)
+
+사실 이런 함수들을 여러개를 연결해서(파이썬에서 흔히 체이닝이라고 했던 것) 사용할 수도 있다.  
+그러면, and 연산을 한 것처럼 여러 조건이나 동작을 묶어서 복잡한 구조도 쉽게 작성할 수 있다.
+
+예를들어,
+```python
+Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+```
+과 같은 코드라면, .filter(published_date__lte=timezone.now())로 필터가 된 객체들을 다시, .order_by('published_date')로 정렬하게 되는 것이다.
