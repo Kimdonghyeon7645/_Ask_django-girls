@@ -99,3 +99,24 @@ Post.objects.create(author=me, title='(제목텍스트)', text='(텍스트)')
 
 위같은 객체 생성 코드로, 원하는만큼 객체를 추가해줄 수 있다.
 
+## 객체 카운트하기
+
+```python
+Post.objects.count()
+```
+이렇게 하면, Post 모델의 객체 개수를 숫자로도 출력할 수 있다. 그냥 강의에서 나와서... 나중에 필요할때 써먹자.
+
+## 필터링하기
+
+(객체명).objects 에서 .all()로 모든 객체를 대상으로 하고, .first()로 첫번째 객체를 대상으로 한다면,  
+.filter()로 인자값으로 필터할 내용을 넣어서 필터링한 객체를 대상으로 선택할 수 있다.
+
+```python
+Post.objects.filter(author=me)
+```
+예를들어 위같이 해준다면, author 필드가 me인 객체만 가져오게 된다.
+
+```python
+Post.objects.filter(title__contains='title')
+```
+title__contains 는 독특하다.
