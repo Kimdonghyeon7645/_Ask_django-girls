@@ -42,4 +42,4 @@
 - [1-6. Django뷰(view)](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-06-Django뷰(view).md)
 - [1-7. HTML시작하기](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-07-HTML시작하기.md)
 - [1-8. DjangoORM과QuerySet](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-08-DjangoORM과QuerySet.md)
-- [1-9. 템플릿동적데이터,쿼리셋](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-08-템플릿동적데이터,쿼리셋.md)
+- [1-9. 템플릿동적데이터,쿼리셋](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-09-템플릿동적데이터,쿼리셋.md)
