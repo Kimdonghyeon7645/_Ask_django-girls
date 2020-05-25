@@ -44,3 +44,6 @@
 - [1-8. DjangoORM과QuerySet](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-08-DjangoORM과QuerySet.md)
 - [1-9. 템플릿동적데이터,쿼리셋](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-09-템플릿동적데이터,쿼리셋.md)
 - [1-10. Django템플릿](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-10-Django템플릿.md)
+- [1-11. Django템플릿](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-11-Django정적(static)파일,CSS사용하기.md)
+- [1-12. Django템플릿](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-12-Django템플릿상속(확장)하기.md)
+- [1-13. Django템플릿](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-13-애플리케이션확장.md)
