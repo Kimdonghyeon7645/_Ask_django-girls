@@ -90,3 +90,82 @@ def post_new(request):
     </form>
 {% endblock %}
 ```
+그렇게 하면, 웹사이트에서 해당 url로 접속했을때, 웹사이트에서 폼을 볼 수 있다.
+
+참고로 여기서 ```<button type="submit" class="save btn btn-default">Save</button>``` 에서 class 속성값을 ```save btn btn-default``` 가 아닌, ```save btn btn-primary```로 변경하면,  
+submit 버튼이 흰색이 아닌, 파란색으로 포인트를 설정할 수 있다.
+
+대신에 이 폼에다 값을 입력하고, 전송버튼을 누르면, 값이 증발해버린다.  
+view에서 폼을 입력받았을 때, 그 값을 db에 저장하는 코드를 추가하지 않아서 이다. 이제 그부분을 만들어주자.
+
+## 폼을 저장하기 (포스팅 추가)
+
+폼을 입력할때, ```post/new/``` 링크로 들어가서, ```post_new``` 라는 view함수를 불러왔는데, 폼을 저장하고 전송할 때도 같은 view함수를 불러온다.
+
+대신에 같은 view함수를 부른다고 해도, request에서 담긴 데이터에서 폼(form)에 입력한 값들이 전달되서 함수가 불러와진다.
+
+이때, 요청의 메서드(method)에 따라서 그 요청의 값이, request.GET, request.POST 에 담겨서 view함수의 매개변수로도 전달받게 된다. (파일이라면 request.FILES 에 담긴다.)  
+그리고 요청의 메서드 형식도, request.method 에 담겨서, 요청 형식(method)이 뭔지도 구할 수 있다. 
+
+이것들을 이용해서 이제 폼을 db에 저장하는 코드를 view에 작성해주자. (폼을 입력하기 전이나, 폼을 전송할때 모두 같은 post_new란 view함수를 불러오기에 그 함수에서 코드를 추가해주면된다.)
+
+```py3
+# (애플리케이션명)/views.py
+# request.POST (POST요청으로 전달한 폼의 값들이 저장)
+# request.method (요청 메서드의 형식이 무엇인지 저장)
+def post_new(request):
+    form = PostForm(request.POST, request.FILES)
+    if form.is_valid(): # 폼에 입력한 값이 비여있지(or 이상하지)않은지 참, 거짓으로 검출
+        post = form.save(commit=False)  # 폼을 db에 저장하고, 그걸 쿼리셋으로 변수에 저장
+        post.author = request.user  # 그 객체에 유저 필드 채우기
+        post.published_date = timezone.now() # 객체에 작성시간 필드 채우기
+        post.save() # 필드 변경한 것을 저장
+        return redirect('post_detail', pk=post.pk)  # post_detail 함수로 넘어가고, pk 변수엔 지금 추가한 최신 객체의 번호를 인자값으로 전송
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_edit.html', { 'form': form, })
+```
+이렇게 저장후에 웹사이트에서, 폼을 제출할 수 있는 url에 접속하면 폼으로 값을 추가하고 전송해서 포스팅을 추가할 수 있다.
+
+마지막으로, 루트 url의 웹페이지(post_list.html)에서 이 폼으로 포스팅을 추가하는 링크(post_edit.html)로 연결되는 a태그를 템플릿에 만들어주면 끝이다.
+```html
+<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+```
+
+## 포스팅 수정하기
+
+이제 포스팅을 추가하는 폼을 만들었으니, 포스팅을 수정하는 폼도 만들어주자.
+```python
+# (애플리케이션명)/urls.py
+path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
+```
+url 패턴에 위같은 패턴을 추가해주고, 
+
+```py3
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/post_edit.html', {'form': form})
+```
+위같이 view함수를 추가해준다.   
+전체적인 구조는 post_new view함수와 같은데,  
+포스트를 불러와서 미리 수정할 폼에 저장하는 코드를 수정했다.
+```py3
+form = PostForm(request.POST, instance=post)
+```
+위같이 해주면, 불러온 포스트(객체)를 담은 변수 post를 instance로 넘겨주면서, 빈 폼이 뜨는 것이 아니라,  
+기존의 포스트내용으로 폼의 필드를 불러와서 다시 저장할 수 있도록 코드를 수정했다.
+
+그리고 이렇게 저장했으면, 각각의 포스트를 보여주는 페이지(post_detail.html)에서도 손쉽게 그 포스트를 수정하는 페이지(post_edit.html)로 넘어갈 수 있도록, 템플릿에서 a태그를 추가해주면 끝이다.
+
+## 보안 : 관리자만 포스트를 변경하도록 하기
+
