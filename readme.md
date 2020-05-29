@@ -41,3 +41,5 @@
 
 ## 목차
 
+- [1. Django 걸스 기본 튜토리얼](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/1-00-Django기본튜토리얼.md)
+- [2. Django 걸스 심화 튜토리얼](https://github.com/Kimdonghyeon7645/django-girls_study_with_Ask-company/blob/master/2-0-Django심화튜토리얼.md)
